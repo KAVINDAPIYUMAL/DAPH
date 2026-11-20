@@ -18,7 +18,7 @@ body {
 }
 
 .global-wrapper {
-  padding: 40px 0;
+  padding: 100px 0;
   min-height: calc(100vh - 66px);
 }
 

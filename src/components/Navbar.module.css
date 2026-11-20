@@ -118,8 +118,14 @@
 
 .dropdownItem:hover {
   background-color: #f8f9fa;
+  color: white;
 }
-
+.dropdownItem:active {
+  background-color: #007bff;
+}
+.dropdownItem:active > a {
+  color: white;
+}
 .dropdownItemGroup {
   border-bottom: 1px solid #d9d9d9;
   padding: 4px 0;
@@ -127,7 +133,7 @@
 
 @media screen and (max-width: 1150px) {
   .header {
-    position: relative !important;
+    position: fixed !important; /*need to check*/
     height: auto !important;
   }
 

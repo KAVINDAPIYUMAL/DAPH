@@ -1,68 +1,27 @@
-.dashboardContainer {
+.dashboardWrapper {
   width: 100%;
+  margin: 0 auto;
   padding: 10px 0;
-}
-
-.welcomeBanner {
-  margin-bottom: 24px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 20px 24px;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border-left: 5px solid #660000;
-}
-
-.welcomeBanner h1 {
-  font-size: 22px;
-  color: #1b4332;
-  margin-bottom: 6px;
-  font-weight: 700;
-}
-
-.welcomeBanner p {
-  color: #555;
-  font-size: 14px;
 }
 
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 6px;
-  padding: 30px 20px;
-  text-align: center;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 150px;
-  border-top: 4px solid #660000;
+/* Tablet: 2 cards per row */
+@media screen and (max-width: 1150px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  background: #ffffff;
-}
-
-.iconWrapper {
-  font-size: 36px;
-  margin-bottom: 12px;
-}
-
-.cardTitle {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1e293b;
-  margin: 0;
+/* Mobile: 1 card per row */
+@media screen and (max-width: 600px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }

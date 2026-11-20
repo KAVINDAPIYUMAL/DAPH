@@ -8,7 +8,7 @@ export default function DashboardLayout({ children }) {
     >
       <Navbar />
       <main className="global-wrapper" style={{ flex: 1 }}>
-        {/* <div className="container">{children}</div> */}
+        <div className="container">{children}</div>
       </main>
       <Footer />
     </div>
