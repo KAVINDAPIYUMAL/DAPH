@@ -1,0 +1,655 @@
+/* ============================================================
+   Allocate Sub Votes — Exact pixel-match to reference screenshot
+   Card span: 87–936px in a 1024px viewport = fluid 100% width
+   Card 1: H=100px   Card 2: H≥151px (grows with content)
+   Gap between cards: 0px (shared border)
+   ============================================================ */
+
+.container {
+  width: 100%;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  color: #333333;
+}
+
+/* ── Card 1 : Title + Filter Row ── */
+.card {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  padding: 10px 14px 12px 14px;
+  margin-bottom: 7px;
+  box-sizing: border-box;
+}
+
+.pageTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333333;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.formRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterLabel {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333333;
+  margin-bottom: 4px;
+}
+
+/* ── Searchable Select (Choose2 / Select2 style) ── */
+.selectWrapper {
+  position: relative;
+  width: 281px;
+  /* exact from screenshot: 92–372 = 280px + border */
+}
+
+.selectButton {
+  width: 100%;
+  height: 28px;
+  padding: 2px 8px;
+  background-color: #f5f5f5;
+  border: 1px solid #aaaaaa;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #888888;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.selectButton.hasValue {
+  color: #333333;
+}
+
+.caretIcon {
+  font-size: 12px;
+  color: #888888;
+  margin-left: 4px;
+  flex-shrink: 0;
+}
+
+/* Dropdown panel */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #aaaaaa;
+  border-radius: 0 0 2px 2px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.searchBoxWrapper {
+  margin-bottom: 4px;
+}
+
+.dropdownSearchInput {
+  width: 100%;
+  height: 24px;
+  padding: 2px 6px;
+  border: 1px solid #66afe9;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px rgba(102, 175, 233, .6);
+  outline: none;
+  font-size: 13px;
+  color: #333333;
+  box-sizing: border-box;
+}
+
+.optionsList {
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.dropdownOption {
+  padding: 4px 8px;
+  font-size: 13px;
+  color: #333333;
+  cursor: pointer;
+  border-radius: 2px;
+  line-height: 1.4;
+}
+
+.dropdownOption:hover {
+  background-color: #3875d7;
+  color: #ffffff;
+}
+
+.dropdownOption.active {
+  font-weight: 500;
+  background-color: #e8f0fe;
+}
+
+.noResults {
+  padding: 5px 8px;
+  font-size: 13px;
+  color: #333333;
+}
+
+/* ── Grid Icon (田 SVG, exact 19×17px, #7F7FFF) ── */
+.gridIconBtn {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 5px;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+}
+
+.tableIconSvg {
+  display: block;
+  width: 19px;
+  height: 17px;
+  opacity: 1;
+  transition: opacity 0.15s ease;
+}
+
+.gridIconBtn:hover .tableIconSvg {
+  opacity: 0.8;
+}
+
+/* ── + Add New Vote Button (231×25px, exact from screenshot) ── */
+.addBtn {
+  height: 36px;
+  min-width: 240px;
+  padding: 0 32px;
+  background-color: #3c9c3f;
+  color: #ffffff;
+  border: 1px solid #3c9c3f;
+  border-radius: 2px;
+  font-size: 18px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  box-sizing: border-box;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.addBtn:hover {
+  background-color: #2e7d31;
+  border-color: #2e7d31;
+}
+
+/* ── Card 2 : DataTable ── */
+.tableCard {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  padding: 14px 16px 16px 16px;
+  min-height: 230px;
+  box-sizing: border-box;
+}
+
+/* Controls row */
+.tableControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #333333;
+}
+
+.entriesControl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.entriesSelect {
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid #aaaaaa;
+  border-radius: 2px;
+  font-size: 15px;
+  outline: none;
+  background: #ffffff;
+  cursor: pointer;
+  min-width: 48px;
+}
+
+.searchControl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.searchInput {
+  height: 28px;
+  padding: 2px 8px;
+  border: 1px solid #aaaaaa;
+  border-radius: 2px;
+  font-size: 15px;
+  outline: none;
+  width: 160px;
+  box-sizing: border-box;
+}
+
+.searchInput:focus {
+  border-color: #66afe9;
+  box-shadow: 0 0 4px rgba(102, 175, 233, 0.5);
+}
+
+/* Table */
+.tableResponsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  color: #333333;
+  table-layout: auto;
+}
+
+/* Header row borders (exact: top-border #1D1D1D at y=215, bottom-border #1D1D1D at y=227) */
+.dataTable thead tr {
+  border-top: 2px solid #1d1d1d;
+  border-bottom: 1px solid #1d1d1d;
+}
+
+.dataTable th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 700;
+  color: #333333;
+  font-size: 15px;
+  line-height: 1.4;
+  white-space: nowrap;
+  background: #ffffff;
+  border-right: 1px solid #dddddd;
+}
+
+.dataTable th:last-child {
+  border-right: none;
+}
+
+.thContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Exact sort icons matching screenshot (⇅ neutral, ▲ active) */
+.sortIconActive {
+  font-size: 9px;
+  color: #333333;
+  font-style: normal;
+  flex-shrink: 0;
+}
+
+.sortIconNeutral {
+  font-size: 11px;
+  color: #aaaaaa;
+  flex-shrink: 0;
+}
+
+/* Table body */
+.dataTable tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.dataTable tbody tr:last-child {
+  border-bottom: 1px solid #1d1d1d;
+}
+
+.dataTable td {
+  padding: 16px 16px;
+  border-right: 1px solid #dddddd;
+  font-size: 15px;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+.dataTable td:last-child {
+  border-right: none;
+}
+
+.dataTable tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.noDataRow {
+  text-align: center !important;
+  color: #333333;
+  background: #ffffff;
+  padding: 38px 10px !important;
+  font-size: 15px;
+}
+
+.amountCell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.actionCell {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.actionBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 14px;
+  border-radius: 2px;
+}
+
+.editBtn {
+  color: #0d6efd;
+  margin-right: 2px;
+}
+
+.deleteBtn {
+  color: #dc3545;
+}
+
+/* Table footer */
+.tableFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  font-size: 15px;
+  color: #333333;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pageLink {
+  background: none;
+  border: none;
+  font-size: 15px;
+  color: #333333;
+  cursor: pointer;
+  padding: 0;
+}
+
+.pageLink.disabled {
+  color: #999999;
+  cursor: default;
+}
+
+/* Scroll track matching DataTables */
+.scrollTrackContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 14px;
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  height: 12px;
+  padding: 0 2px;
+  box-sizing: border-box;
+}
+
+.scrollArrow {
+  font-size: 8px;
+  color: #555555;
+  line-height: 1;
+  padding: 0 1px;
+  flex-shrink: 0;
+}
+
+.scrollTrack {
+  flex: 1;
+  height: 6px;
+  background-color: #888888;
+  border-radius: 3px;
+  margin: 0 2px;
+}
+
+/* ── Required Alert Modal (#660000) ── */
+.alertOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  animation: alertFadeIn 0.15s ease-out;
+}
+
+@keyframes alertFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.alertBox {
+  width: 335px;
+  background-color: #660000;
+  border-radius: 4px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45);
+  padding: 22px 20px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  animation: alertPop 0.15s ease-out;
+}
+
+@keyframes alertPop {
+  from {
+    transform: scale(0.92);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.alertIconCircle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.alertIconX {
+  font-size: 26px;
+  color: #ffffff;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.alertTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 6px;
+}
+
+.alertMessage {
+  font-size: 13px;
+  color: #ffffff;
+  margin: 0 0 18px;
+}
+
+.alertOkBtn {
+  width: 58px;
+  height: 29px;
+  background-color: #428bca;
+  color: #ffffff;
+  border: 1px solid #357ebd;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.alertOkBtn:hover {
+  background-color: #3071a9;
+}
+
+/* ── Add/Edit Vote Modal ── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.modalContent {
+  background: #ffffff;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #dee2e6;
+  background: #f8f9fa;
+}
+
+.modalTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: #212529;
+  margin: 0;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #6c757d;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modalBody {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.formGroup label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333333;
+}
+
+.formInput,
+.formSelect {
+  padding: 6px 10px;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  font-size: 13px;
+  outline: none;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+.cancelBtn {
+  padding: 6px 14px;
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  color: #495057;
+  font-size: 13px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.saveBtn {
+  padding: 6px 16px;
+  background-color: #3c9c3f;
+  border: 1px solid #3c9c3f;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* ── Toast ── */
+.toastNotification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #198754;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
