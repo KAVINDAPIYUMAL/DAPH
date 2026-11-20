@@ -1,0 +1,127 @@
+.profileCard {
+  background-color: #f8f9fa;
+  padding: 20px 28px 28px;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  width: 100%;
+}
+
+.heading {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  color: #212529;
+  margin-bottom: 18px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 400;
+  color: #212529;
+}
+
+.input {
+  width: 100%;
+  max-width: 520px;
+  height: 40px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #495057;
+  font-weight: 600;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 1px;
+  outline: none;
+  transition: all 0.15s ease-in-out;
+}
+
+.input:focus {
+  border-color: #6cb9ff;
+  box-shadow: 0 0 0 4px rgba(108, 185, 255, 0.3);
+}
+
+.readOnlyInput {
+  background-color: #e9ecef;
+}
+
+.wideInput {
+  max-width: 780px;
+}
+
+.actionsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 820px;
+  margin-top: 8px;
+}
+
+.changeBtn {
+  background-color: #28a745;
+  color: #ffffff;
+  border: 1px solid #28a745;
+  border-radius: 1px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.changeBtn:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.cancelBtn {
+  background-color: #ffc107;
+  color: #212529;
+  border: 1px solid #ffc107;
+  border-radius: 1px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.cancelBtn:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+.errorText {
+  color: #660000;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.successText {
+  color: #1e7e34;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .profileCard {
+    padding: 18px 16px 24px;
+  }
+
+  .input,
+  .wideInput,
+  .actionsRow {
+    max-width: 100%;
+  }
+}

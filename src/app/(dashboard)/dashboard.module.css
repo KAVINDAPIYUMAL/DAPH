@@ -1,0 +1,27 @@
+.dashboardWrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+/* Tablet: 2 cards per row */
+@media screen and (max-width: 1150px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+}
+
+/* Mobile: 1 card per row */
+@media screen and (max-width: 600px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
