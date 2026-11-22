@@ -18,15 +18,16 @@ const FARM_CARDS = [
   },
   {
     title: "Production Data",
-    href: "/farm/milkProduction",
+    href: "/farm/productiondata",
     image: "/images/milkProduction.jpg",
     fallbackImage: "/images/budget.jpg",
   },
   {
     title: "Diseases Data",
-    href: "/farm/diseaseconfiguration",
+    href: "/farm/diseasesdata",
     image: "/images/diseaseconfiguration.jpg",
     fallbackImage: "/images/task.jpg",
+
   },
   {
     title: "Disaster Data",
@@ -66,13 +67,13 @@ const FARM_CARDS = [
   },
   {
     title: "AI Process",
-    href: "/farm/ai-process",
+    href: "/farm/aiprocess",
     image: "/images/animaldata.jpg",
     fallbackImage: "/images/search.jpg",
   },
   {
     title: "Diseases Process",
-    href: "/farm/diseasedata",
+    href: "/farm/diseasesprocess",
     image: "/images/diseasedata.jpg",
     fallbackImage: "/images/task.jpg",
   },
@@ -90,13 +91,13 @@ const FARM_CARDS = [
   },
   {
     title: "Treatment Process",
-    href: "/farm/treatments",
+    href: "/farm/treatmentprocess",
     image: "/images/treatments.jpg",
     fallbackImage: "/images/voucher.jpg",
   },
   {
     title: "Post Mortem Process",
-    href: "/farm/treatments",
+    href: "/farm/postmortemprocess",
     image: "/images/treatments.jpg",
     fallbackImage: "/images/voucher.jpg",
   },
