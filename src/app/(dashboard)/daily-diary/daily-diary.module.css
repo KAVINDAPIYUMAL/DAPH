@@ -1,0 +1,184 @@
+.pageStack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.topCard {
+  background-color: #ffffff;
+  padding: 20px 24px 26px;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14);
+  width: 100%;
+}
+
+.tableCard {
+  background-color: #ffffff;
+  padding: 18px 20px 24px;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14);
+  width: 100%;
+}
+
+.controlsRow {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 240px 240px;
+  gap: 14px;
+  align-items: end;
+}
+
+.buttonAlignBottom {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.feedbackText {
+  font-size: 13.5px;
+  color: #660000;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.modalFormBody {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tasksSectionTitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: #111111;
+  margin: 0 0 2px;
+}
+
+.timeRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.twoColRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.threeColRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.fourColRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.hoursRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.modalField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modalLabel {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #212529;
+}
+
+.modalInput,
+.modalSelect {
+  height: 38px;
+  padding: 6px 12px;
+  font-size: 13.5px;
+  color: #212529;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 2px;
+  outline: none;
+  width: 100%;
+}
+
+.modalInput:focus,
+.modalSelect:focus,
+.modalTextarea:focus {
+  border-color: #80bdff;
+}
+
+.readOnlyField {
+  background-color: #e9ecef;
+  color: #212529;
+}
+
+.selectPlaceholder {
+  color: #adb5bd;
+}
+
+.modalTextarea {
+  width: 100%;
+  min-height: 92px;
+  padding: 8px 12px;
+  font-size: 13.5px;
+  color: #212529;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 2px;
+  resize: vertical;
+  outline: none;
+}
+
+.collapsibleSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.collapsibleHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 3px 0;
+  text-align: left;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #212529;
+  cursor: pointer;
+}
+
+.triangle {
+  font-size: 11px;
+  color: #212529;
+  width: 10px;
+}
+
+.modalErrorText {
+  font-size: 13px;
+  color: #660000;
+  font-weight: 500;
+  margin: 0;
+}
+
+@media screen and (max-width: 900px) {
+  .controlsRow,
+  .timeRow,
+  .twoColRow,
+  .threeColRow,
+  .fourColRow,
+  .hoursRow {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,202 @@
+.tableWrapper {
+  width: 100%;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #212529;
+}
+
+.topControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.exportGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.toolBtn {
+  background: linear-gradient(180deg, white, #e4e2e2);
+  color: #212529;
+  border: 1px solid #666666;
+  border-radius: 2px;
+  padding: 10px 15px;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.toolBtn:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.copyBadge {
+  font-size: 12px;
+  color: #28a745;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.searchGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.searchLabel {
+  font-size: 14px;
+  color: #212529;
+}
+
+.searchInput {
+  height: 32px;
+  width: 190px;
+  padding: 4px 10px;
+  font-size: 14px;
+  color: #212529;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: #660000;
+}
+
+.scrollContainer {
+  width: 100%;
+  overflow-x: auto;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 960px;
+  background-color: #ffffff;
+}
+
+.th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111111;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 2px solid #212529;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.thInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sortIcon {
+  font-size: 10px;
+  color: #adb5bd;
+}
+
+.sortActive {
+  color: #212529;
+}
+
+.td {
+  padding: 10px 12px;
+  font-size: 13.5px;
+  color: #212529;
+  border-top: 1px solid #e9ecef;
+  white-space: nowrap;
+}
+
+.tr:nth-child(odd) .td {
+  background-color: #f4f5f7;
+}
+
+.tr:nth-child(even) .td {
+  background-color: #ffffff;
+}
+
+.tr:hover .td {
+  background-color: #eceff1;
+}
+
+.emptyCell {
+  text-align: center;
+  padding: 18px 12px;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.bottomControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.infoText {
+  font-size: 13.5px;
+  color: #212529;
+}
+
+.paginationGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pageBtn {
+  padding: 8px 15px;
+  font-size: 13px;
+  border: 1px solid #dee2e6;
+  border-radius: 2px;
+  background-color: #ffffff;
+  color: #212529;
+  cursor: pointer;
+}
+
+.navPageBtn {
+  border: none;
+  background-color: transparent;
+  color: #6c757d;
+}
+
+.navPageBtn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.activePage {
+  border: 1px solid #666666;
+  background: linear-gradient(180deg, white, #e4e2e2);
+  font-weight: 600;
+}
+
+@media screen and (max-width: 600px) {
+  .topControls,
+  .bottomControls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .searchInput {
+    width: 150px;
+  }
+}
