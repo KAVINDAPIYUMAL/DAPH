@@ -8,17 +8,22 @@ import styles from "./DataTable.module.css";
 export default function DataTable({
   columns = [],
   data = [],
-  emptyMessage = "No matching records found",
+  emptyMessage = "No data available in table",
   pageSize = 10,
   exportFileName = "daph-table-export",
   pdfTitle = "Department of Animal Production & Health",
+  showExportButtons = true,
+  showEntriesDropdown = false,
+  alwaysShowControls = false,
 }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(pageSize);
   const [copyFeedback, setCopyFeedback] = useState("");
 
   const hasData = Array.isArray(data) && data.length > 0;
+  const displayControls = hasData || alwaysShowControls;
 
   const handleSort = (key) => {
     if (!key || !hasData) return;
@@ -75,17 +80,17 @@ export default function DataTable({
   }, [filteredData, sortConfig]);
 
   const totalEntries = sortedData.length;
-  const totalPages = Math.max(1, Math.ceil(totalEntries / pageSize));
+  const totalPages = Math.max(1, Math.ceil(totalEntries / rowsPerPage));
   const safeCurrentPage = Math.min(currentPage, totalPages);
 
   const paginatedData = useMemo(() => {
-    const startIndex = (safeCurrentPage - 1) * pageSize;
-    return sortedData.slice(startIndex, startIndex + pageSize);
-  }, [sortedData, safeCurrentPage, pageSize]);
+    const startIndex = (safeCurrentPage - 1) * rowsPerPage;
+    return sortedData.slice(startIndex, startIndex + rowsPerPage);
+  }, [sortedData, safeCurrentPage, rowsPerPage]);
 
   const startEntry =
-    totalEntries === 0 ? 0 : (safeCurrentPage - 1) * pageSize + 1;
-  const endEntry = Math.min(safeCurrentPage * pageSize, totalEntries);
+    totalEntries === 0 ? 0 : (safeCurrentPage - 1) * rowsPerPage + 1;
+  const endEntry = Math.min(safeCurrentPage * rowsPerPage, totalEntries);
 
   const escapeDelimitedValue = (val, delimiter = ",") => {
     const str = val === null || val === undefined ? "" : String(val);
@@ -213,39 +218,79 @@ export default function DataTable({
 
   return (
     <div className={styles.tableWrapper}>
-      {hasData && (
+      {displayControls && (
         <div className={styles.topControls}>
           <div className={styles.exportGroup}>
-            <button
-              type="button"
-              onClick={handleCopy}
-              className={styles.toolBtn}
-            >
-              Copy
-            </button>
-            <button
-              type="button"
-              onClick={handleExportCSV}
-              className={styles.toolBtn}
-            >
-              CSV
-            </button>
-            <button
-              type="button"
-              onClick={handleExportExcel}
-              className={styles.toolBtn}
-            >
-              Excel
-            </button>
-            <button
-              type="button"
-              onClick={handleExportPdf}
-              className={styles.toolBtn}
-            >
-              PDF
-            </button>
-            {copyFeedback && (
-              <span className={styles.copyBadge}>{copyFeedback}</span>
+            {showEntriesDropdown && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  fontSize: "13px",
+                  color: "#212529",
+                }}
+              >
+                <span>Show</span>
+                <select
+                  aria-label="Entries per page"
+                  value={rowsPerPage}
+                  onChange={(e) => {
+                    setRowsPerPage(Number(e.target.value));
+                    setCurrentPage(1);
+                  }}
+                  style={{
+                    height: "30px",
+                    padding: "2px 6px",
+                    fontSize: "13px",
+                    border: "1px solid #ced4da",
+                    borderRadius: "3px",
+                    backgroundColor: "#ffffff",
+                  }}
+                >
+                  <option value={10}>10</option>
+                  <option value={25}>25</option>
+                  <option value={50}>50</option>
+                  <option value={100}>100</option>
+                </select>
+                <span>entries</span>
+              </div>
+            )}
+
+            {showExportButtons && (
+              <>
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className={styles.toolBtn}
+                >
+                  Copy
+                </button>
+                <button
+                  type="button"
+                  onClick={handleExportCSV}
+                  className={styles.toolBtn}
+                >
+                  CSV
+                </button>
+                <button
+                  type="button"
+                  onClick={handleExportExcel}
+                  className={styles.toolBtn}
+                >
+                  Excel
+                </button>
+                <button
+                  type="button"
+                  onClick={handleExportPdf}
+                  className={styles.toolBtn}
+                >
+                  PDF
+                </button>
+                {copyFeedback && (
+                  <span className={styles.copyBadge}>{copyFeedback}</span>
+                )}
+              </>
             )}
           </div>
 
@@ -269,7 +314,7 @@ export default function DataTable({
 
       <div
         className={`${styles.scrollContainer} ${
-          !hasData ? styles.emptyScrollContainer : ""
+          !displayControls ? styles.emptyScrollContainer : ""
         }`}
       >
         <table className={styles.dataTable}>
@@ -291,7 +336,7 @@ export default function DataTable({
                   >
                     <div className={styles.thInner}>
                       <span>{col.label}</span>
-                      {hasData && (
+                      {displayControls && (
                         <span
                           className={`${styles.sortIcon} ${
                             isSorted ? styles.sortActive : ""
@@ -307,7 +352,7 @@ export default function DataTable({
             </tr>
           </thead>
 
-          {hasData && (
+          {displayControls && (
             <tbody>
               {paginatedData.length > 0 ? (
                 paginatedData.map((row, rowIndex) => (
@@ -334,7 +379,7 @@ export default function DataTable({
         </table>
       </div>
 
-      {hasData && (
+      {displayControls && (
         <div className={styles.bottomControls}>
           <div className={styles.infoText}>
             Showing {startEntry} to {endEntry} of {totalEntries} entries
@@ -350,13 +395,15 @@ export default function DataTable({
               Previous
             </button>
 
-            <span className={`${styles.pageBtn} ${styles.activePage}`}>
-              {safeCurrentPage}
-            </span>
+            {hasData && (
+              <span className={`${styles.pageBtn} ${styles.activePage}`}>
+                {safeCurrentPage}
+              </span>
+            )}
 
             <button
               type="button"
-              disabled={safeCurrentPage >= totalPages}
+              disabled={safeCurrentPage >= totalPages || !hasData}
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               className={`${styles.pageBtn} ${styles.navPageBtn}`}
             >

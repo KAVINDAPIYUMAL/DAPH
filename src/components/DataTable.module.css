@@ -65,7 +65,6 @@
   color: #212529;
   background-color: #ffffff;
   border: 1px solid #ced4da;
-  border-radius: 3px;
   outline: none;
 }
 
@@ -166,7 +165,6 @@
   padding: 8px 15px;
   font-size: 13px;
   border: 1px solid #dee2e6;
-  border-radius: 2px;
   background-color: #ffffff;
   color: #212529;
   cursor: pointer;

@@ -86,24 +86,27 @@ export default function Navbar() {
                 className={`${styles.dropdownMenu} ${openDropdown === "main" ? styles.show : ""}`}
               >
                 <div className={styles.dropdownItem}>
-                  <Link href="/search-request" onClick={handleLinkClick}>
+                  <Link href="/main/search-request" onClick={handleLinkClick}>
                     Search Request
                   </Link>
                 </div>
               </div>
             </div>
 
-            {/* Services Dropdown */}
+            {/* Pending Tasks Dropdown */}
             <div
-              className={`${styles.menuItem} ${styles.dropdown} ${openDropdown === "services" ? styles.active : ""}`}
-              onClick={(e) => toggleDropdown("services", e)}
+              className={`${styles.menuItem} ${styles.dropdown} ${openDropdown === "pending" ? styles.active : ""}`}
+              onClick={(e) => toggleDropdown("pending", e)}
             >
-              Services <i className="fa fa-caret-down"></i>
+              Pending Tasks <i className="fa fa-caret-down"></i>
               <div
-                className={`${styles.dropdownMenu} ${openDropdown === "services" ? styles.show : ""}`}
+                className={`${styles.dropdownMenu} ${openDropdown === "pending" ? styles.show : ""}`}
               >
                 <div className={styles.dropdownItem}>
-                  <Link href="/update-task" onClick={handleLinkClick}>
+                  <Link
+                    href="/pending-tasks/update-task"
+                    onClick={handleLinkClick}
+                  >
                     Update my tasks
                   </Link>
                 </div>
@@ -138,7 +141,10 @@ export default function Navbar() {
                   </Link>
                 </div>
                 <div className={styles.dropdownItem}>
-                  <Link href="/request-claim-create" onClick={handleLinkClick}>
+                  <Link
+                    href="/planning/create-request-claim"
+                    onClick={handleLinkClick}
+                  >
                     Request Claim Create
                   </Link>
                 </div>
@@ -520,7 +526,7 @@ export default function Navbar() {
                 className={`${styles.dropdownMenu} ${openDropdown === "user" ? styles.show : ""}`}
               >
                 <div className={styles.dropdownItem}>
-                  <Link href="/edit-profile" onClick={handleLinkClick}>
+                  <Link href="/user/edit-profile" onClick={handleLinkClick}>
                     Edit Profile
                   </Link>
                 </div>

@@ -6,12 +6,12 @@ export default function MainDashboard() {
     {
       title: "Search Request",
       image: "/images/search.jpg",
-      route: "/search-request",
+      route: "/main/search-request",
     },
     {
       title: "Update Task",
       image: "/images/task.jpg",
-      route: "/update-task",
+      route: "/pending-tasks/update-task",
     },
     {
       title: "Capex budget",
@@ -21,7 +21,7 @@ export default function MainDashboard() {
     {
       title: "Voucher Claim",
       image: "/images/voucher.jpg",
-      route: "/voucher-claim",
+      route: "/planning/create-request-claim",
     },
     {
       title: "Farm",
@@ -41,7 +41,7 @@ export default function MainDashboard() {
     {
       title: "Daily Diary",
       image: "/images/budget.jpg",
-      route: "/daily-diary",
+      route: "/main/daily-diary",
     },
   ];
 
